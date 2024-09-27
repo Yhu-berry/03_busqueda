@@ -17,6 +17,8 @@ int main(){
 
     bin = binario(Arr, num, datoBus);
 
+//Funciona solo si el valor se encuentra, falta agregar una condicional para mostra la posicion especifica 
+//Por el momento solo retornara -1 si no se hallo el numero
     cout<<bin;
 
 return 0;
@@ -28,12 +30,14 @@ int binario(int A[100], int n, int dato){
     //Cuando el numero a insertar esta antes del primer numero te bota una posicion incorrecta 
     izq=0;
     der=n-1;
+    pos=-1;
     bool cen=false;
 
-    while(izq<der && cen==0){
+    while(izq<der && !cen){
         m=int ((izq+der)/2);
         if (A[m]==dato){
-            cen=1;
+            cen=true;
+            pos=m;
         }else{
             if(A[m]<dato)
                 izq=m+1;
@@ -42,10 +46,8 @@ int binario(int A[100], int n, int dato){
         };
     }
 
-    if(cen==true){
-        pos=m;
-    }else{
-        pos=-izq;
+    if(!cen){
+    pos=-1;
     }
 
     return pos;
